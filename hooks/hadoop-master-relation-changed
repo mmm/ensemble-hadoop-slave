@@ -4,8 +4,17 @@
 # This script should be idempotent.
 set -x
 NAMENODE=`relation-get namenode`
+if [ -z "$NAMENODE" ]; then
+	exit 0
+fi
 JOBTRACKER=`relation-get jobtracker`
+if [ -z "$JOBTRACKER" ]; then
+	exit 0
+fi
 HDFSDATADIR=`relation-get hdfsdatadir`
+if [ -z "$HDFSDATADIR" ]; then
+	exit 0
+fi
 
 echo debconf hadoop/namenode string ${NAMENODE}| /usr/bin/debconf-set-selections
 echo debconf hadoop/jobtracker string ${JOBTRACKER}| /usr/bin/debconf-set-selections
