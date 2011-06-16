@@ -1,0 +1,14 @@
+ensemble: formula
+name: hadoop-slave
+revision: 1
+summary: Slave Node for Hadoop
+description: |
+ The Data Nodes in the Hadoop Cluster are responsible for serving up
+ blocks of data over the network to Hadoop Distributed Filesystem
+ (HDFS) clients.
+
+requires:
+  hadoop-master:
+    interface: hadoop-namenode
+    interface: hadoop-jobtracker
+    interface: hadoop-hdfs

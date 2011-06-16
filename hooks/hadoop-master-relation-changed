@@ -1,0 +1,25 @@
+#!/bin/bash
+# This must be renamed to the name of the relation. The goal here is to
+# affect any change needed by relationships being formed, modified, or broken
+# This script should be idempotent.
+set -x
+NAMENODE=`relation-get namenode`
+JOBTRACKER=`relation-get jobtracker`
+HDFSDATADIR=`relation-get hdfsdatadir`
+
+echo debconf hadoop/namenode string ${NAMENODE}| /usr/bin/debconf-set-selections
+echo debconf hadoop/jobtracker string ${JOBTRACKER}| /usr/bin/debconf-set-selections
+echo debconf hadoop/hdfsdatadir string ${HDFSDATADIR}| /usr/bin/debconf-set-selections
+
+DEBIAN_FRONTEND=noninteractive dpkg-reconfigure hadoop-0.20-datanode
+DEBIAN_FRONTEND=noninteractive dpkg-reconfigure hadoop-0.20-tasktracker
+
+service hadoop-0.20-datanode restart
+service hadoop-0.20-tasktracker restart
+
+echo $ENSEMBLE_REMOTE_UNIT modified its settings
+echo Relation settings:
+relation-get
+echo Relation members:
+relation-list
+true
