@@ -6,7 +6,9 @@ description: |
  The Data Nodes in the Hadoop Cluster are responsible for serving up
  blocks of data over the network to Hadoop Distributed Filesystem
  (HDFS) clients.
-
+provides:
+  ganglia:
+    interface: monitor
 requires:
   hadoop-master:
     interface: hadoop-master
