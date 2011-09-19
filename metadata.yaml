@@ -1,4 +1,3 @@
-ensemble: formula
 name: hadoop-slave
 revision: 1
 summary: Slave Node for Hadoop

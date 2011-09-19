@@ -1,18 +1,18 @@
 #!/bin/bash
 set -ue
 
-ensemble-log "installing ganglia monitor"
+juju-log "installing ganglia monitor"
 DEBIAN_FRONTEND=noninteractive apt-get -y install -qq --no-install-recommends ganglia-monitor
 service ganglia-monitor status && service ganglia-monitor stop
 
 server=`relation-get server`
 if [ -z "$server" ] ; then
-    ensemble-log "remote host not set yet."
+    juju-log "remote host not set yet."
     exit 0
 fi
 #remote_ip=`dig +short $remote_host|head -n 1`
-service_name=`echo $ENSEMBLE_UNIT_NAME | cut -d/ -f1`
-unit_name=${ENSEMBLE_UNIT_NAME/\//-}
+service_name=`echo $JUJU_UNIT_NAME | cut -d/ -f1`
+unit_name=${JUJU_UNIT_NAME/\//-}
 
 gmond_already_configured() {
   false

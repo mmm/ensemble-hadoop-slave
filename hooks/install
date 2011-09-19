@@ -4,18 +4,18 @@
 
 set -x
 
-ensemble-log "install script"
+juju-log "install script"
 
 export TERM=linux
 
 # Add the Hadoop PPA
-ensemble-log "Adding ppa"
+juju-log "Adding ppa"
 apt-add-repository ppa:canonical-sig/thirdparty
-ensemble-log "updating cache"
+juju-log "updating cache"
 apt-get update
 
 # Install the packages
-ensemble-log "installing packages"
+juju-log "installing packages"
 DEBIAN_FRONTEND=noninteractive apt-get install -y hadoop-0.20-datanode hadoop-0.20-tasktracker
 
 # Open the necessary ports

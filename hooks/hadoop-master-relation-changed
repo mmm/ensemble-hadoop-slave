@@ -26,7 +26,7 @@ DEBIAN_FRONTEND=noninteractive dpkg-reconfigure hadoop-0.20-tasktracker
 service hadoop-0.20-datanode restart
 service hadoop-0.20-tasktracker restart
 
-echo $ENSEMBLE_REMOTE_UNIT modified its settings
+echo $JUJU_REMOTE_UNIT modified its settings
 echo Relation settings:
 relation-get
 echo Relation members:
