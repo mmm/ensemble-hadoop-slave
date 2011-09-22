@@ -8,11 +8,20 @@ juju-log "install script"
 
 export TERM=linux
 
+#RELEASE_CODE=`lsb_release -a | awk '/Codename/ { print $2 }'`
+
 # Add the Hadoop PPA
 juju-log "Adding ppa"
-apt-add-repository ppa:canonical-sig/thirdparty
+apt-add-repository ppa:mark-mims/hadoop
+#apt-add-repository ppa:canonical-sig/thirdparty
 juju-log "updating cache"
 apt-get update
+
+# only necessary on oneiric but shouldn't break anything elsewhere
+HOSTNAME=`hostname -f`
+IP_ADDRESS=`hostname -f | xargs dig +short`
+#sed -i "s/\(.*${HOSTNAME}.*\)/#\1/" /etc/hosts
+sed -i "s/127.0.1.1\(.*${HOSTNAME}.*\)/${IP_ADDRESS}\1/" /etc/hosts
 
 # Install the packages
 juju-log "installing packages"
