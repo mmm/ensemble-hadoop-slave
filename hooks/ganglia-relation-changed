@@ -2,7 +2,7 @@
 set -ue
 
 juju-log "installing ganglia monitor"
-DEBIAN_FRONTEND=noninteractive apt-get -y install -qq --no-install-recommends ganglia-monitor
+DEBIAN_FRONTEND=noninteractive apt-get -y install -qq --no-install-recommends ganglia-monitor=3.1.7-2ubuntu2
 service ganglia-monitor status && service ganglia-monitor stop
 
 server=`relation-get server`
@@ -35,7 +35,7 @@ configure_gmond() {
       host_dmax = 3600 /*secs */ 
       cleanup_threshold = 300 /*secs */ 
       gexec = no             
-      send_metadata_interval = 60     
+      send_metadata_interval = 6     
     } 
     cluster { 
       name = "$service_name"
