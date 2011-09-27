@@ -35,7 +35,7 @@ configure_gmond() {
       host_dmax = 3600 /*secs */ 
       cleanup_threshold = 300 /*secs */ 
       gexec = no             
-      send_metadata_interval = 6     
+      send_metadata_interval = 20     
     } 
     cluster { 
       name = "$service_name"
