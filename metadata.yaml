@@ -1,5 +1,4 @@
 name: hadoop-slave
-revision: 1
 summary: Slave Node for Hadoop
 description: |
  The Data Nodes in the Hadoop Cluster are responsible for serving up
